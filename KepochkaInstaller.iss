@@ -1,13 +1,13 @@
 [Setup]
 AppName=Кепочка  by _BaDRiVeR_
-AppVersion=1.1
+AppVersion=2.0
 DefaultDirName={pf}\Kepochka
 DefaultGroupName=Кепочка
 OutputDir=.
 OutputBaseFilename=KepochkaInstaller
 Compression=lzma
 SolidCompression=yes
-SetupIconFile=icon.ico
+SetupIconFile=Cache\icon.ico
 WizardStyle=modern
 LanguageDetectionMethod=locale
 DisableDirPage=no
@@ -20,15 +20,12 @@ Name: "desktopicon"; Description: "Создать ярлык на рабочем
 Name: "autorun"; Description: "Добавить в автозагрузку"; GroupDescription: "Дополнительные задачи"
 
 [Files]
-Source: "DesktopMateReplacer.ps1"; DestDir: "{app}"; Flags: ignoreversion
-Source: "launch.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "oi.wav"; DestDir: "{app}"; Flags: ignoreversion
-Source: "ok.wav"; DestDir: "{app}"; Flags: ignoreversion
-Source: "icon.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "custom_png.png"; DestDir: "{app}"; Flags: ignoreversion
-Source: "error.png"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Cache\*"; DestDir: "{app}\Desktop Mate"; Flags: recursesubdirs ignoreversion
+Source: "Sounds\*"; DestDir: "{app}\Desktop Mate"; Flags: recursesubdirs ignoreversion
 Source: "Desktop Mate\*"; DestDir: "{app}\Desktop Mate"; Flags: recursesubdirs ignoreversion
-Source: "README.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
+Source: "LICENSE"; DestDir: "{app}"; Flags: ignoreversion
+Source: "version.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "windowsdesktop-runtime-6.0.36-win-x64.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall; Check: not IsDotNet6Detected
 
 [Run]
@@ -37,9 +34,9 @@ Filename: "{tmp}\windowsdesktop-runtime-6.0.36-win-x64.exe"; \
   Check: not IsDotNet6Detected; \
   StatusMsg: "Устанавливается .NET Desktop Runtime 6.0. Подождите..."
 
-Filename: "{app}\launch.bat"; Description: "Запустить Кепочку"; \
+///[Filename: "{app}\launch.bat"; Description: "Запустить Кепочку"; \
     Flags: shellexec postinstall skipifsilent nowait
-
+///
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}"
 Type: files; Name: "{userstartup}\Кепочка.lnk"
