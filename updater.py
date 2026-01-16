@@ -9,7 +9,6 @@ import sys
 import winsound
 import threading
 from plyer import notification as plyer_notify
-import time
 
 APP_NAME = "KeпоЧкА от _BaDRiVeR_"
 SCRIPT_DIR = Path(__file__).parent
@@ -180,7 +179,7 @@ if not update_error:
         "Привет! Я — Мита Кепочка (=UwU=)",
         "Сыграем в кнопку? Ой..."
     ]
-    
+
     notify(APP_NAME, f"Я загрузилась! {choice(quotes)}", True)
     log("Запуск Desktop Mate...")
     steam_exe = Path(steam_base) / "steam.exe"
